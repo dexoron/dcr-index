@@ -90,10 +90,13 @@ def validate_package(path):
 
     for idx, v in enumerate(data["versions"]):
         v_ctx = f"versions[{idx}]"
-        req_v_fields = ["version", "git", "tag", "checksum", "yanked", "published_at"]
+        req_v_fields = ["version", "git", "checksum", "yanked", "published_at"]
         for vf in req_v_fields:
             if vf not in v:
                 return error(path, f"Missing field '{vf}' in {v_ctx}")
+        
+        if "tag" not in v and "rev" not in v:
+             return error(path, f"Missing field 'tag' or 'rev' in {v_ctx}")
 
         if not RE_SEMVER.match(v["version"]):
             return error(path, f"Invalid SemVer format: '{v['version']}' in {v_ctx}")

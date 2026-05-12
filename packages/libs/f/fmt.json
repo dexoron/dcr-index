@@ -27,7 +27,7 @@
     {
       "version": "10.2.1",
       "git": "https://github.com/dexoron/dcr-ports",
-      "rev": "229ed6b60e594e198f56b1b2105bddd7a5364fae",
+      "rev": "f1733bde23d0cf756eff73348251f41321885562",
       "subpath": "packages/libs/f/fmt",
       "checksum": "sha256:1250e4cc58bf06ee631567523f48848dc4596133e163f02615c97f78bab6c811",
       "yanked": false,
