@@ -1,0 +1,40 @@
+{
+  "name": "dcr-math",
+  "type": "lib",
+  "description": "Native DCR math library for basic operations",
+  "license": "MIT",
+  "homepage": "https://github.com/dexoron/dcr-test-lib-index",
+  "repository": "https://github.com/dexoron/dcr-test-lib-index",
+  "keywords": ["math", "calculation", "dcr-test"],
+  "categories": ["Math"],
+  "language": {
+    "c": true,
+    "cpp": false
+  },
+  "platforms": {
+    "linux": true,
+    "macos": true,
+    "windows": true,
+    "linux_arm": true,
+    "macos_arm": true
+  },
+  "dcr": {
+    "min_version": "0.5.0",
+    "native": true,
+    "notes": "Native DCR math library"
+  },
+  "versions": [
+    {
+      "version": "0.1.0",
+      "git": "https://github.com/dexoron/dcr-test-lib-index",
+      "tag": "v0.1.0",
+      "checksum": "sha256:106c50ff98e57f2085650d745cb1e220765c8891a6c7a09f393115a8fe33b00c",
+      "yanked": false,
+      "published_at": "2026-05-12"
+    }
+  ],
+  "author": {
+    "name": "Dexoron",
+    "github": "dexoron"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "packages": [
+    {
+      "name": "fmt",
+      "type": "lib",
+      "description": "A modern formatting library for C++",
+      "latest_version": "10.2.1",
+      "path": "packages/libs/f/fmt.json"
+    },
+    {
+      "name": "dcr-math",
+      "type": "lib",
+      "description": "Native DCR math library for basic operations",
+      "latest_version": "0.1.0",
+      "path": "packages/libs/d/dcr-math.json"
+    }
+  ]
+}

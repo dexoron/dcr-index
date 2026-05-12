@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DCR Package Metadata",
+  "type": "object",
+  "required": ["name", "type", "description", "license", "repository", "keywords", "categories", "language", "platforms", "dcr", "versions", "author"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "type": { "enum": ["lib", "app"] },
+    "description": { "type": "string", "maxLength": 200 },
+    "license": { "type": "string" },
+    "homepage": { "type": ["string", "null"] },
+    "repository": { "type": "string" },
+    "keywords": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 8 },
+    "categories": { "type": "array", "items": { "type": "string" } },
+    "language": {
+      "type": "object",
+      "required": ["c", "cpp"],
+      "properties": {
+        "c": { "type": "boolean" },
+        "cpp": { "type": "boolean" }
+      }
+    },
+    "platforms": {
+      "type": "object",
+      "required": ["linux", "macos", "windows", "linux_arm", "macos_arm"],
+      "properties": {
+        "linux": { "type": "boolean" },
+        "macos": { "type": "boolean" },
+        "windows": { "type": "boolean" },
+        "linux_arm": { "type": "boolean" },
+        "macos_arm": { "type": "boolean" }
+      }
+    },
+    "dcr": {
+      "type": "object",
+      "required": ["min_version", "native"],
+      "properties": {
+        "min_version": { "type": ["string", "null"] },
+        "native": { "type": "boolean" },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "install": {
+      "type": "object",
+      "properties": {
+        "via_dcr": { "type": "boolean" },
+        "manual": { "type": ["string", "null"] }
+      }
+    },
+    "versions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["version", "git", "checksum", "yanked", "published_at"],
+        "properties": {
+          "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$" },
+          "git": { "type": "string" },
+          "tag": { "type": "string" },
+          "rev": { "type": "string" },
+          "subpath": { "type": "string" },
+          "checksum": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+          "yanked": { "type": "boolean" },
+          "published_at": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+        }
+      }
+    },
+    "author": {
+      "type": "object",
+      "required": ["name", "github"],
+      "properties": {
+        "name": { "type": "string" },
+        "github": { "type": "string" }
+      }
+    }
+  }
+}
