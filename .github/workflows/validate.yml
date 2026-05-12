@@ -1,0 +1,23 @@
+name: Validate Package
+
+on:
+  pull_request:
+    paths:
+      - 'packages/**/*.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install jsonschema
+      - name: Validate changed packages
+        run: |
+          git diff --name-only origin/main...HEAD | grep 'packages/.*\.json' | while read f; do
+            echo "Validating $f"
+            python scripts/validate.py "$f"
+          done
