@@ -31,6 +31,14 @@
       "checksum": "sha256:106c50ff98e57f2085650d745cb1e220765c8891a6c7a09f393115a8fe33b00c",
       "yanked": false,
       "published_at": "2026-05-12"
+    },
+    {
+      "version": "0.1.1",
+      "git": "https://github.com/dexoron/dcr-test-lib-index",
+      "tag": "v0.1.1",
+      "checksum": "sha256:3579f22d49a383d0f83298248ce64f1b461a2f2c1bb68f1325e466bc473a8cff",
+      "yanked": false,
+      "published_at": "2026-05-13"
     }
   ],
   "author": {

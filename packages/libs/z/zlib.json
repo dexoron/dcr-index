@@ -1,0 +1,40 @@
+{
+  "name": "zlib",
+  "type": "lib",
+  "description": "A massively spiffy yet delicately unobtrusive compression library",
+  "license": "Zlib",
+  "homepage": "https://zlib.net/",
+  "repository": "https://github.com/dcr-ports/zlib-port",
+  "keywords": ["compression", "zlib", "deflate", "inflate"],
+  "categories": ["Compression"],
+  "language": {
+    "c": true,
+    "cpp": false
+  },
+  "platforms": {
+    "linux": true,
+    "macos": true,
+    "windows": true,
+    "linux_arm": true,
+    "macos_arm": true
+  },
+  "dcr": {
+    "min_version": "0.6.0",
+    "native": true,
+    "notes": "Ported zlib 1.3.2.1 for DCR"
+  },
+  "versions": [
+    {
+      "version": "1.3.2",
+      "git": "https://github.com/dcr-ports/zlib-port",
+      "tag": "v1.3.2.1",
+      "checksum": "sha256:67da41e54d9c4c8fcde6f58914c7ee903338ed74f4fbf3ba9ec9ced3b8faf9fa",
+      "yanked": false,
+      "published_at": "2026-05-13"
+    }
+  ],
+  "author": {
+    "name": "Jean-loup Gailly and Mark Adler",
+    "github": "madler"
+  }
+}

@@ -1,18 +1,18 @@
 {
   "packages": [
     {
-      "name": "fmt",
-      "type": "lib",
-      "description": "A modern formatting library for C++",
-      "latest_version": "10.2.1",
-      "path": "packages/libs/f/fmt.json"
-    },
-    {
       "name": "dcr-math",
       "type": "lib",
       "description": "Native DCR math library for basic operations",
-      "latest_version": "0.1.0",
+      "latest_version": "0.1.1",
       "path": "packages/libs/d/dcr-math.json"
+    },
+    {
+      "name": "zlib",
+      "type": "lib",
+      "description": "A massively spiffy yet delicately unobtrusive compression library",
+      "latest_version": "1.3.2",
+      "path": "packages/libs/z/zlib.json"
     }
   ]
 }

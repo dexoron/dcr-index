@@ -98,11 +98,43 @@ TEMPLATE_APP = {
     }
 }
 
+def parse_toml_metadata(path):
+    """Simple regex-based TOML parser for package metadata."""
+    import re
+    with open(path, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    metadata = {}
+    # Extract [package] section
+    package_match = re.search(r"\[package\](.*?)(?=\n\[|$)", content, re.DOTALL)
+    if package_match:
+        section = package_match.group(1)
+        for key in ["name", "version", "type", "description", "author", "homepage", "license", "repository"]:
+            m = re.search(rf'^{key}\s*=\s*"(.*?)"', section, re.MULTILINE)
+            if m:
+                metadata[key] = m.group(1)
+    return metadata
+
 def main():
     parser = argparse.ArgumentParser(description="Generate DCR Index package template")
-    parser.add_argument("--type", required=True, choices=["lib", "app"], help="Package type")
-    parser.add_argument("--name", required=True, help="Package name")
+    parser.add_argument("--type", choices=["lib", "app"], help="Package type")
+    parser.add_argument("--name", help="Package name")
+    parser.add_argument("--from-toml", help="Path to dcr.toml to extract metadata from")
     args = parser.parse_args()
+
+    metadata = {}
+    if args.from_toml:
+        metadata = parse_toml_metadata(args.from_toml)
+        if not args.name:
+            args.name = metadata.get("name")
+        if not args.type:
+            args.type = metadata.get("type")
+            if args.type == "none": # map none to lib if unsure
+                 args.type = "lib"
+
+    if not args.name or not args.type:
+        print("Error: --name and --type are required (or provided via --from-toml)")
+        return 1
 
     name = args.name.lower().strip()
     pkg_type = args.type
@@ -119,6 +151,17 @@ def main():
 
     template = TEMPLATE_LIB.copy() if pkg_type == "lib" else TEMPLATE_APP.copy()
     template["name"] = name
+    
+    # Override template with metadata from TOML
+    if metadata:
+        if "description" in metadata: template["description"] = metadata["description"]
+        if "license" in metadata: template["license"] = metadata["license"]
+        if "homepage" in metadata: template["homepage"] = metadata["homepage"]
+        if "repository" in metadata: template["repository"] = metadata["repository"]
+        if "author" in metadata: template["author"]["name"] = metadata["author"]
+        if "version" in metadata:
+            template["versions"][0]["version"] = metadata["version"]
+            template["versions"][0]["tag"] = f"v{metadata['version']}"
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(template, f, indent=2, ensure_ascii=False)
